@@ -1,36 +1,92 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 📝 NOTION Clone
 
-## Getting Started
+A powerful, serverless app for real-time document collaboration with AI integration.
 
-First, run the development server:
+## ✨ Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- ⚡ **Serverless Backend**: Cloudflare Workers + Hono
+- 🔒 **Authentication**: Seamless login with Clerk
+- 🔄 **Real-Time Collaboration**: Live cursors and editing via Liveblocks
+- 📝 **Rich Text Editor**: Feature-packed, conflict-free collaboration
+- 🤖 **AI Integration**: Cloudflare AI for translate features
+- 🔥 **Firebase Firestore**: Real-time document storage
+- 🖥️ **Next.js App Router**: Modern, efficient routing
+- 💅 **Sleek UI**: Shadcn components + Tailwind CSS
+- 📘 **TypeScript**: Rock-solid type safety
+- 🔔 **Smart Notifications**: Elegant dialogs and toasts
+- 🚀 **Vercel Deployment**: One-click production setup
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🚀 Quick Start
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. Clone and install:
+   git clone https://github.com/your-repo/project-name.git
+   cd project-name
+   npm install
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+2. Set up your .env file:
+   CLERK_SECRET_KEY=your_key_here
+   NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=your_key_here
+   NEXT_PUBLIC_BASE_URL=http://localhost:3000
+   LIVEBLOCKS_PRIVATE_KEY=your_key_here
+   NEXT_PUBLIC_LIVEBLOCKS_PUBLIC_KEY=your_key_here
 
-## Learn More
+3. Configure services:
+   - Clerk: Set up auth
+   - Liveblocks: Enable real-time collab
+   - Firebase: Set up Firestore
 
-To learn more about Next.js, take a look at the following resources:
+4. Launch the app:
+   npm run dev
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🗂️ Project Structure
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+/
+├── components/     # Reusable UI components
+├── pages/          # Next.js pages
+├── api/            # Cloudflare Workers API and Clerk Auth
+├── firebase/       # Firebase Firestore integration
+├── public/         # Static assets
+└── utils/          # Utility functions
 
-## Deploy on Vercel
+## 🛠️ Tech Stack
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Frontend: Next.js, TypeScript, Tailwind CSS, Shadcn
+- Backend: Cloudflare Workers, Firebase Firestore
+- Real-time: Liveblocks
+- Auth: Clerk
+- AI: OpenAI, Cloudflare AI
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## 🔧 Detailed Setup
+
+1. Clerk Authentication
+   - Create an account on Clerk (https://clerk.com/)
+   - Set up a new application and obtain API keys
+   - Add keys to your .env file
+
+2. Liveblocks Integration
+   - Sign up for Liveblocks (https://liveblocks.io/)
+   - Generate API keys for your project
+   - Add keys to your .env file
+
+3. Firebase Firestore
+   - Create a project in Firebase Console (https://console.firebase.google.com/)
+   - Enable Firestore in your project
+   - Follow Firebase docs to integrate with your app
+
+4. Vercel Deployment
+   - Push your code to a GitHub repository
+   - Connect your repo to Vercel
+   - Configure environment variables in Vercel dashboard
+   - Deploy with 'vercel --prod'
+
+## 🤝 Contributing
+
+Contributions are welcome! Feel free to submit issues and pull requests.
+
+## 🔗 Learn More
+
+- Clerk Docs: https://clerk.com/docs
+- Cloudflare Workers Docs: https://developers.cloudflare.com/workers/
+- Liveblocks Docs: https://liveblocks.io/docs
+- Next.js Docs: https://nextjs.org/docs
+- Firebase Docs: https://firebase.google.com/docs

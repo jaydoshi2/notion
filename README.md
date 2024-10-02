@@ -1,71 +1,48 @@
 # 📝 Notion Clone - Real-time Collaboration with AI Integration
 
-A modern, serverless Notion-style app built for **real-time collaboration**, **authentication**, and **AI-powered document translation**.
+A modern, serverless Notion-style app featuring real-time collaboration, authentication, and AI-powered document translation.
+This is the link to my live deployed website (https://notion-chi-wheat.vercel.app/)
 
-## ✨ Features
+## ✨ Key Features
 
-- ⚡ **Serverless Backend**: Powered by Cloudflare Workers & Hono for fast and scalable APIs.
-- 🔒 **Authentication**: Seamless user login and authentication via Clerk.
-- 🔄 **Real-Time Collaboration**: Live cursors and editing enabled by Liveblocks.
-- 📝 **Rich Text Editor**: Fully-featured editor supporting conflict-free, real-time collaboration.
-- 🤖 **AI-Powered**: Cloudflare AI workers integrated for language translation and document summarization.
-- 🔥 **Firebase Firestore**: Real-time document storage using Firestore for synchronization.
-- 🖥️ **Next.js App Router**: Modern routing and server-side features using Next.js.
-- 💅 **Sleek UI/UX**: Styled with Shadcn and Tailwind CSS for a professional, responsive interface.
-- 📘 **TypeScript**: Robust type safety to minimize bugs and improve development experience.
-- 🔔 **Smart Notifications**: Intuitive dialogs and toast notifications using Shadcn components.
-- 🚀 **One-Click Deployment**: Deploy in seconds with Vercel for seamless production releases.
-
----
+- ⚡ **Serverless Backend**: Cloudflare Workers & Hono for scalable APIs
+- 🔒 **Authentication**: Seamless login via Clerk
+- 🔄 **Real-Time Collaboration**: Live cursors and editing with Liveblocks
+- 📝 **Rich Text Editor**: Conflict-free, real-time collaborative editing
+- 🤖 **AI Integration**: Cloudflare AI for translation & summarization
+- 🔥 **Document Storage**: Real-time sync with Firebase Firestore
+- 🖥️ **Frontend**: Next.js App Router for modern routing and SSR
+- 💅 **UI/UX**: Sleek design with Shadcn & Tailwind CSS
+- 📘 **Language**: TypeScript for robust type safety
+- 🔔 **Smart Notifications**: Intuitive dialogs and toasts
+- 🚀 **Deployment**: One-click deployment with Vercel
 
 ## 🚀 Quick Start
 
-### 1️⃣ Clone & Install Dependencies
-git clone https://github.com/your-repo/notion-clone.git
-cd notion-clone
-npm install
+1. Clone & install:
+   ```bash
+   git clone https://github.com/your-repo/notion-clone.git
+   cd notion-clone
+   npm install
 
-### 2️⃣ Set Up Environment Variables
+3. Set up `.env`:
+   ```bash
+   CLERK_SECRET_KEY=your_clerk_secret_key
+   NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=your_clerk_publishable_key
+   NEXT_PUBLIC_BASE_URL=http://localhost:3000
+   LIVEBLOCKS_PRIVATE_KEY=your_liveblocks_private_key
+   NEXT_PUBLIC_LIVEBLOCKS_PUBLIC_KEY=your_liveblocks_public_key
 
-Create a `.env` file at the root of your project with the following variables:
+4. Configure external services:
+   - **Clerk**: Sign up at [clerk.dev](https://clerk.dev/) and get API keys
+   - **Liveblocks**: Sign up at [liveblocks.io](https://liveblocks.io/) and generate keys
+   - **Firebase**: Set up Firestore at [console.firebase.google.com](https://console.firebase.google.com/)
 
-CLERK_SECRET_KEY=your_clerk_secret_key
-NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=your_clerk_publishable_key
-NEXT_PUBLIC_BASE_URL=http://localhost:3000
-LIVEBLOCKS_PRIVATE_KEY=your_liveblocks_private_key
-NEXT_PUBLIC_LIVEBLOCKS_PUBLIC_KEY=your_liveblocks_public_key
+5. Run locally:
+   ```bash
+   npm run dev
 
-### 3️⃣ Configure External Services
-
-- **Clerk Authentication**:
-  - [Sign up for Clerk](https://clerk.dev/) and create an application.
-  - Obtain your **API keys** and update the `.env` file.
-
-- **Liveblocks for Real-Time Collaboration**:
-  - [Sign up for Liveblocks](https://liveblocks.io/).
-  - Generate your API keys and add them to the `.env` file.
-
-- **Firebase Firestore**:
-  - [Set up a Firebase project](https://console.firebase.google.com/) and enable Firestore.
-  - Follow Firebase documentation to integrate Firestore with your Next.js app.
-
-### 4️⃣ Launch the App Locally
-npm run dev
-
-Visit [http://localhost:3000](http://localhost:3000) to view your application.
-
----
-
-## 🗂️ Project Structure
-
-/components          # Reusable UI components
-/pages               # Next.js pages
-/api                 # Cloudflare Workers API and Clerk Auth
-/firebase            # Firebase Firestore integration
-/public              # Static assets
-/utils               # Utility functions
-
----
+Visit `http://localhost:3000` to view the app.
 
 ## 🛠️ Tech Stack
 
@@ -73,43 +50,43 @@ Visit [http://localhost:3000](http://localhost:3000) to view your application.
 - **Backend**: Cloudflare Workers, Firebase Firestore
 - **Real-time**: Liveblocks
 - **Auth**: Clerk
-- **AI**: OpenAI, Cloudflare AI
-
----
+- **AI**: Cloudflare AI
 
 ## 🔧 Detailed Setup
 
 1. **Clerk Authentication**
-   - [Create an account on Clerk](https://clerk.dev/) and obtain your **publishable** and **secret API keys**.
-   - Add the API keys to your `.env` file.
+   - Create an account on [Clerk](https://clerk.dev/)
+   - Obtain publishable and secret API keys
+   - Add keys to `.env` file
 
 2. **Liveblocks Integration**
-   - [Sign up for Liveblocks](https://liveblocks.io/) and generate your **public** and **private API keys**.
-   - Add them to your `.env` file.
+   - Sign up for [Liveblocks](https://liveblocks.io/)
+   - Generate public and private API keys
+   - Add to `.env` file
 
 3. **Firebase Firestore**
-   - [Create a project in Firebase Console](https://console.firebase.google.com/) and enable Firestore.
-   - Follow Firebase documentation to set up Firestore in your app.
+   - Create a project in [Firebase Console](https://console.firebase.google.com/)
+   - Enable Firestore
+   - Follow Firebase docs to integrate with your app
 
 4. **Vercel Deployment**
-   - Push your code to a GitHub repository.
-   - Connect the repo to Vercel.
-   - Configure your environment variables in the Vercel dashboard.
-   - Deploy with:
-vercel --prod
-
----
+   - Push code to a GitHub repository
+   - Connect repo to Vercel
+   - Configure environment variables in Vercel dashboard
+   - Deploy with: `vercel --prod`
 
 ## 🤝 Contributing
 
-Contributions are welcome! Feel free to submit issues and pull requests.
-
----
+Contributions are welcome! Please feel free to submit issues and pull requests.
 
 ## 🔗 Useful Resources
 
-- **Clerk Docs**: https://clerk.dev/docs
-- **Cloudflare Workers Docs**: https://developers.cloudflare.com/workers/
-- **Liveblocks Docs**: https://liveblocks.io/docs
-- **Next.js Docs**: https://nextjs.org/docs
-- **Firebase Firestore Docs**: https://firebase.google.com/docs/firestore
+- [Clerk Documentation](https://clerk.dev/docs)
+- [Cloudflare Workers Documentation](https://developers.cloudflare.com/workers/)
+- [Liveblocks Documentation](https://liveblocks.io/docs)
+- [Next.js Documentation](https://nextjs.org/docs)
+- [Firebase Firestore Documentation](https://firebase.google.com/docs/firestore)
+
+## 📄 License
+
+This project is licensed under the MIT License.

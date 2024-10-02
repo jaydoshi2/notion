@@ -1,6 +1,8 @@
 # 📝 Notion Clone - Real-time Collaboration with AI Integration
 
 A modern, serverless Notion-style app featuring real-time collaboration, authentication, and AI-powered document translation.
+
+
 This is the link to my live deployed website (https://notion-chi-wheat.vercel.app/)
 
 ## ✨ Key Features

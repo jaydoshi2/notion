@@ -4,15 +4,15 @@ import { getFirestore } from 'firebase-admin/firestore';
 let app: App;
 
 if (getApps().length === 0) {
-  app = initializeApp({
-    credential: cert({
-      projectId: process.env.FIREBASE_PROJECT_ID,
-      privateKey: process.env.FIREBASE_PRIVATE_KEY?.replace(/\\n/g, '\n'),
-      clientEmail: process.env.FIREBASE_CLIENT_EMAIL,
-    }),
-  });
+    app = initializeApp({
+        credential: cert({
+            projectId: process.env.FIREBASE_PROJECT_ID,
+            privateKey: process.env.FIREBASE_PRIVATE_KEY?.replace(/\\n/g, '\n'), // This ensures newlines are properly formatted
+            clientEmail: process.env.FIREBASE_CLIENT_EMAIL,
+        }),
+    });
 } else {
-  app = getApp();
+    app = getApp();
 }
 
 const adminDb = getFirestore(app);

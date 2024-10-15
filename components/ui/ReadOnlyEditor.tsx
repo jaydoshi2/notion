@@ -1,18 +1,16 @@
-
 import { BlockNoteEditor } from "@blocknote/core";
 import { useCreateBlockNote } from "@blocknote/react";
 import "@blocknote/core/fonts/inter.css";
 import "@blocknote/shadcn/style.css";
 
-import { useRoom, useSelf } from '@liveblocks/react';
+import { useRoom } from '@liveblocks/react';
 import * as Y from 'yjs';
 import { LiveblocksYjsProvider } from '@liveblocks/yjs';
 import { Button } from './button';
 import { MoonIcon, SunIcon } from 'lucide-react';
 import { BlockNoteView } from '@blocknote/shadcn';
 import React, { useEffect, useState } from 'react';
-import stringToColor from "@/lib/StringToColor";
-import TranslateDocument from "./TranslateDocument";
+import LoadingSpinner from '@/components/ui/LoadingSpinner'; // Assuming you have a LoadingSpinner component
 
 type EditorProps = {
     doc: Y.Doc;
@@ -22,18 +20,13 @@ type EditorProps = {
 };
 
 function BlockNote({ doc, provider, darkMode, readOnly }: EditorProps) {
-    const userInfo = useSelf((me) => me.info);
-
-    console.log("User Info in BlockNote:", userInfo);
-    console.log("user Name ", userInfo?.name || "Anonymous")
-
     const editor: BlockNoteEditor = useCreateBlockNote({
         collaboration: {
             provider,
             fragment: doc.getXmlFragment("document-store"),
             user: {
-                name: userInfo?.name || 'Anonymous',
-                color: stringToColor(userInfo?.email || 'default@email.com'),
+                name: 'Guest', // Default guest user for public access
+                color: '#999999', // Default color for guest users
             },
         },
     });
@@ -50,12 +43,11 @@ function BlockNote({ doc, provider, darkMode, readOnly }: EditorProps) {
     );
 }
 
-function ReadOnlyEditor({  readOnly = true }) {
+function ReadOnlyEditor({ readOnly = true }) {
     const room = useRoom();
     const [doc, setDoc] = useState<Y.Doc | null>(null);
     const [provider, setProvider] = useState<LiveblocksYjsProvider | null>(null);
     const [darkMode, setDarkMode] = useState(false);
-    const userInfo = useSelf((me) => me.info);
 
     useEffect(() => {
         if (room) {
@@ -71,11 +63,9 @@ function ReadOnlyEditor({  readOnly = true }) {
         }
     }, [room]);
 
-    console.log("Room:", room);
-    console.log("User Info in ReadOnlyEditor:", userInfo);
-
-    if (!doc || !provider || !room || !userInfo) {
-        return <div>Loading...</div>;
+    // Display LoadingSpinner while setting up the document and provider
+    if (!doc || !provider || !room) {
+        return <LoadingSpinner />;
     }
 
     const style = `hover:text-white ${darkMode
@@ -87,14 +77,11 @@ function ReadOnlyEditor({  readOnly = true }) {
         <div className="max-w-6xl mx-auto">
             <div className="flex items-center gap-2 justify-end mb-10">
                 {/* Dark Mode Toggle */}
-
-                <TranslateDocument doc={doc} />
-
                 <Button className={style} onClick={() => setDarkMode(!darkMode)}>
                     {darkMode ? <SunIcon /> : <MoonIcon />}
                 </Button>
             </div>
-            <BlockNote doc={doc} provider={provider} darkMode={darkMode} readOnly = {readOnly} />
+            <BlockNote doc={doc} provider={provider} darkMode={darkMode} readOnly={readOnly} />
         </div>
     );
 }

@@ -5,6 +5,7 @@ import { useDocumentData } from 'react-firebase-hooks/firestore'
 import { doc } from 'firebase/firestore'
 import { db } from '@/firebase'
 import ReadOnlyEditor from '../../../../components/ui/ReadOnlyEditor'
+import LoadingSpinner from '@/components/ui/LoadingSpinner' // Assuming you have a LoadingSpinner component
 
 const PublishedDocument = () => {
   const params = useParams()
@@ -14,7 +15,9 @@ const PublishedDocument = () => {
 
   const [data, loading, error] = useDocumentData(documentRef)
 
-  if (loading) return <div>Loading...</div>
+  // Display LoadingSpinner while fetching the document
+  if (loading) return <LoadingSpinner />
+
   if (error) return <div>Error: {error.message}</div>
   if (!data || !data.published) return <div>This document is not published</div>
 

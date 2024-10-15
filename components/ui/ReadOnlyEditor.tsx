@@ -1,24 +1,27 @@
 import React, { useEffect, useState } from 'react';
-import { useRoom, useSelf } from '@liveblocks/react';
+import { useRoom } from '@liveblocks/react';
 import * as Y from 'yjs';
 import { LiveblocksYjsProvider } from '@liveblocks/yjs';
 import { Button } from './button';
 import { MoonIcon, SunIcon } from 'lucide-react';
 import BlockNote from './BlockNote';
 import TranslateDocument from "./TranslateDocument";
+import { useUser } from '@clerk/nextjs';
 
 interface ReadOnlyEditorProps {
   readOnly?: boolean;
   documentTitle?: string;
+  documentId: string;
+  documentContent: string;
 }
 
-function ReadOnlyEditor({ readOnly = true, documentTitle }: ReadOnlyEditorProps) {
+function ReadOnlyEditor({ readOnly = true, documentTitle, documentId, documentContent }: ReadOnlyEditorProps) {
     const room = useRoom();
     const [doc, setDoc] = useState<Y.Doc | null>(null);
     const [provider, setProvider] = useState<LiveblocksYjsProvider | null>(null);
     const [darkMode, setDarkMode] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
-    const userInfo = useSelf((me) => me.info);
+    const { user } = useUser();
 
     useEffect(() => {
         let yDoc: Y.Doc | null = null;
@@ -57,6 +60,13 @@ function ReadOnlyEditor({ readOnly = true, documentTitle }: ReadOnlyEditorProps)
             : "text-gray-700 bg-gray-200 hover:bg-gray-300 hover:text-gray-700"
     }`;
 
+    const userInfo = user 
+        ? { 
+            name: user.fullName || user.username || 'Anonymous', 
+            email: user.primaryEmailAddress?.emailAddress || 'anonymous@example.com'
+          }
+        : null;
+
     return (
         <div className="max-w-6xl mx-auto">
             {documentTitle && <h1 className="text-3xl font-bold mb-5">{documentTitle}</h1>}
@@ -72,6 +82,7 @@ function ReadOnlyEditor({ readOnly = true, documentTitle }: ReadOnlyEditorProps)
                 darkMode={darkMode} 
                 readOnly={readOnly} 
                 userInfo={userInfo}
+                initialContent={documentContent}
             />
         </div>
     );

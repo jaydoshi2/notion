@@ -4,10 +4,15 @@ import * as Y from 'yjs';
 import { LiveblocksYjsProvider } from '@liveblocks/yjs';
 import { Button } from './button';
 import { MoonIcon, SunIcon } from 'lucide-react';
-import BlockNote from './BlockNote'; // Assuming you've separated BlockNote into its own component
+import BlockNote from './BlockNote';
 import TranslateDocument from "./TranslateDocument";
 
-function ReadOnlyEditor({ readOnly = true }) {
+interface ReadOnlyEditorProps {
+  readOnly?: boolean;
+  documentTitle?: string;
+}
+
+function ReadOnlyEditor({ readOnly = true, documentTitle }: ReadOnlyEditorProps) {
     const room = useRoom();
     const [doc, setDoc] = useState<Y.Doc | null>(null);
     const [provider, setProvider] = useState<LiveblocksYjsProvider | null>(null);
@@ -54,6 +59,7 @@ function ReadOnlyEditor({ readOnly = true }) {
 
     return (
         <div className="max-w-6xl mx-auto">
+            {documentTitle && <h1 className="text-3xl font-bold mb-5">{documentTitle}</h1>}
             <div className="flex items-center gap-2 justify-end mb-10">
                 <TranslateDocument doc={doc} />
                 <Button className={style} onClick={() => setDarkMode(!darkMode)}>
@@ -65,7 +71,7 @@ function ReadOnlyEditor({ readOnly = true }) {
                 provider={provider} 
                 darkMode={darkMode} 
                 readOnly={readOnly} 
-                userInfo={userInfo || { name: 'Anonymous', color: '#000000' }}
+                userInfo={userInfo}
             />
         </div>
     );

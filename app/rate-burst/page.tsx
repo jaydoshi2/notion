@@ -1,7 +1,7 @@
 "use client";
 import React, { useRef, useState } from 'react';
 
-const TOTAL_REQUESTS = 200;
+const TOTAL_REQUESTS = 60;
 const DELAY_MS = 25;
 
 export default function RateBurstPage() {
